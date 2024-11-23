@@ -20,32 +20,43 @@ public class Jugador {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         this.creado = fechaHoraActual.format(formato);
     }
-    public void tomarCarta(Carta c) {
+   public void tomarCarta (Carta c){
         mano.add(c);
-    }
-    public Carta jugarCarta(int i) {
-        if (i < 0 || i >= mano.size()) {
-            throw new IndexOutOfBoundsException("Indice de carta invalido");
+   }
+   public Carta jugarCarta (int i){
+        if (i < 0 || i>= mano.size()){
+            throw new IndexOutOfBoundsException("Indice invalido");
         }
         return mano.remove(i);
-    }
-    public Carta getCarta(int i) {
-
+   }
+   public Carta getCarta(int i){
         return mano.get(i);
-    }
-    public void sumarPuntos(int puntos) {
-        this.puntaje += puntos;
-    }
-    public void reiniciarMano() {
-        this.mano = new ArrayList<Carta>();
-    }
-
-    //ME FALTA EL METODO ES GANADOR!! En partida
-    //Gana el que menos puntos obtiene
-
-    public void setNombre(String nombre) {
-
-        this.nombre = nombre;
-    }
-
+   }
+   public void sumarPuntos (int puntos){
+        this.puntaje+=puntos;
+   }
+   public void reiniciarMano(){
+        this.mano=new ArrayList<>();
+   }
+   public boolean esGanador (int puntajeMinimo){
+        return this.puntaje==puntajeMinimo;
+   }
+   public int getPuntaje(){
+        return this.puntaje;
+   }
+   public String getNombre(){
+        return this.nombre;
+   }
+   public void setNombre(String nombre){
+        this.nombre=nombre;
+   }
+   public int getCantidadCartas(){
+        return this.mano.size();
+   }
+   public void recibirCartas (ArrayList<Carta> cartas){
+        this.mano.addAll(cartas);
+   }
+   public String getCreado(){
+        return this.creado;
+   }
 }

@@ -1,60 +1,63 @@
 package ar.edu.unlu.corazones.modelo;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+
 public class Baraja {
     private ArrayList<Carta> cartas;
-    public Baraja() {
-        this.cartas = new ArrayList<>();
+    public Baraja(){
+        this.cartas=new ArrayList<>();
+        this.crearBaraja();
     }
-
-    // Crear la baraja de cartas francesas
-    public void crearBaraja() {
-        this.cartas.clear();
-        for (Palo palo : Palo.values()) {
-            for (int valor = 1; valor <= 13; valor++) { // Valores del 1 al 13 (As a Rey)
-                this.cartas.add(new Carta(palo, valor));
+    //creo la baraja completa con las cartas
+    private void crearBaraja(){
+        for (Palo palo : Palo.values()){
+            for (int valor = 1; valor <=13; valor++){
+                cartas.add(new Carta(palo,valor));
             }
         }
     }
-
-    // Mezclar la baraja
-    public void barajar() {
-        Collections.shuffle(this.cartas);
+    public void barajar(){
+        Collections.shuffle(cartas);//mezclo las cartas
     }
-
-    // Repartir cartas
-    public ArrayList<ArrayList<Carta>> repartir(int numeroDeJugadores) {
-        if (numeroDeJugadores <= 0) {
-            throw new IllegalArgumentException("El número de jugadores debe ser mayor que cero.");
+    public List<List<Carta>> repartir (int cantidadJugadores){
+        if (cantidadJugadores<= 0 || cantidadJugadores>cartas.size()){
+            throw new IllegalArgumentException("Número de jugadores inválido.");
         }
-
-        // Inicializar las manos de los jugadores
-        ArrayList<ArrayList<Carta>> manos = new ArrayList<>();
-        for (int i = 0; i < numeroDeJugadores; i++) {
+        List<List<Carta>> manos = new ArrayList<>();
+        for (int i = 0; i < cantidadJugadores; i++) {
             manos.add(new ArrayList<>());
         }
-
-        // Repartir cartas una por una a cada jugador
+        //reparto las cartas equivalentemente
         int jugadorActual = 0;
-        while (!cartas.isEmpty()) {
-            Carta carta = cartas.remove(0); // Tomar la primera carta
+        for (Carta carta : cartas) {
             manos.get(jugadorActual).add(carta);
-            jugadorActual = (jugadorActual + 1) % numeroDeJugadores; // Siguiente jugador
+            jugadorActual = (jugadorActual + 1) % cantidadJugadores;
         }
+
+        // Vaciar la baraja después de repartir
+        cartas.clear();
 
         return manos;
     }
-
-    // Obtener el tamaño de la baraja
-    public int getCantidadCartas() {
-        return this.cartas.size();
+    // Método para obtener el número de cartas restantes en la baraja."NO SERIA NECESARIO"
+    public int getNumeroDeCartas() {
+        return cartas.size();
     }
 
-    // Mostrar todas las cartas
-    public void mostrarCartas() {
+    // Método para obtener la baraja completa (útil para depuración o inspección).
+    public List<Carta> getCartas() {
+        return cartas;
+    }
+
+    // Representación textual de la baraja (útil para depuración).
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("Baraja:\n");
         for (Carta carta : cartas) {
-            System.out.println(carta);
+            sb.append(carta).append("\n");
         }
+        return sb.toString();
     }
 
 }
