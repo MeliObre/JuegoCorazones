@@ -5,50 +5,46 @@ import java.util.Comparator;
 import java.util.List;
 
 public class Partida {
-    private List<Jugador> jugadores;  // Lista de jugadores
-    private int rondasJugadas;  // Número de rondas jugadas
-    private Baraja baraja;  // Baraja utilizada en la partida
+    private List<Jugador> jugadores;
+    private int rondasJugadas;
+    private Baraja baraja;
 
     public Partida(List<Jugador> jugadores) {
         this.jugadores = jugadores;
         this.rondasJugadas = 0;
-        this.baraja = new Baraja();  // Crear una nueva baraja
+        this.baraja = new Baraja();
     }
 
-    // Inicia la partida
     public void iniciarPartida() {
-        repartirCartas();  // Reparte las cartas a los jugadores
-        rondasJugadas = 0;  // Reinicia el contador de rondas
+        repartirCartas();
+        rondasJugadas = 0;
 
-        while (!verificarGanador()) {  // Mientras no haya un ganador
-            jugarRonda();  // Juega una ronda
-            rondasJugadas++;  // Aumenta el número de rondas jugadas
+        while (!verificarGanador()) {  // mientras no hay un ganador
+            jugarRonda();  // juega una ronda
+            rondasJugadas++;  // aumento el número de rondas jugadas
         }
-        // Al finalizar las rondas, mostramos al ganador
+        // muestro ganador por ronda
         Jugador ganador = finalizarPartida();
         System.out.println("La partida ha terminado. El ganador es: " + ganador.getNombre());
     }
 
-    // Repartir las cartas iniciales a los jugadores
+    // reparto las cartas a los jugadores
     private void repartirCartas() {
-        baraja.barajar();  // Barajar la baraja
-        List<List<Carta>> manos = baraja.repartir(4);  // Asumiendo que hay 4 jugadores
+        baraja.barajar();
+        List<List<Carta>> manos = baraja.repartir(4);
         for (int i = 0; i < jugadores.size(); i++) {
             List<Carta> cartasRepartidas = manos.get(i);  // Obtener las cartas del jugador
             jugadores.get(i).recibirCartas(cartasRepartidas);
         }
     }
 
-    // Jugar una ronda
     public void jugarRonda() {
-        // Lógica para jugar una ronda
-        System.out.println("Iniciando ronda " + (rondasJugadas + 1));
 
-        // Ejemplo de cómo podría llevarse a cabo la ronda
-        // Realizamos el intercambio de cartas según las reglas
-        // El número de ronda podría afectar el intercambio, por ejemplo:
+        System.out.println("Iniciando ronda " + (rondasJugadas + 1));
+        // realizo el intercambio de cartas según las reglas
+        // el numero de ronda afecta el intercambio
         Ronda ronda = new Ronda(rondasJugadas + 1); // Pasamos el número de ronda a la clase Ronda
-        ronda.iniciarIntercambio(jugadores); // Inicia el intercambio de cartas para la ronda
+        ronda.iniciarIntercambio(jugadores);
 
         // Aquí iría la lógica para que los jugadores jueguen sus cartas, sumen puntos, etc.
         // Dependiendo de la dinámica del juego, puedes agregar un ciclo para que los jugadores jueguen
@@ -62,10 +58,8 @@ public class Partida {
         }
     }
 
-    // Verificar si hay un ganador
+    // verifico si hay un ganador
     public boolean verificarGanador() {
-        // Lógica para verificar si hay un ganador
-        // Esto puede basarse en un puntaje específico, por ejemplo 50 puntos
         for (Jugador jugador : jugadores) {
             if (jugador.getPuntaje() >= 100) {  // Si un jugador alcanza o supera 50 puntos, se acaba el juego
                 return true;
@@ -74,9 +68,9 @@ public class Partida {
         return false;  // Si no hay ganador aún
     }
 
-    // Finalizar la partida y devolver el ganador
+    // finalizo la partida y devolver el ganador
     public Jugador finalizarPartida() {
         Jugador ganador = Collections.min(jugadores, Comparator.comparingInt(Jugador::getPuntaje));
-        return ganador;  // Devuelve el jugador con menos puntos (o el que cumpla alguna otra condición de victoria)
+        return ganador;  // retorno el jugador con menos puntos (o el que cumpla alguna otra condición de victoria)
     }
 }
