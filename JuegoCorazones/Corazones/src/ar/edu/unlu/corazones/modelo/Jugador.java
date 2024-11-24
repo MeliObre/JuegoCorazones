@@ -2,6 +2,9 @@ package ar.edu.unlu.corazones.modelo;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
 public class Jugador {
     private static final long serialVersionUID = 1L;
     private int id;
@@ -53,10 +56,39 @@ public class Jugador {
    public int getCantidadCartas(){
         return this.mano.size();
    }
-   public void recibirCartas (ArrayList<Carta> cartas){
+   public void recibirCartas (List<Carta> cartas){
         this.mano.addAll(cartas);
    }
    public String getCreado(){
         return this.creado;
    }
+
+    public List<Carta> seleccionarCartasParaIntercambio(int cantidad) {
+        if (cantidad > mano.size()) {
+            throw new IllegalArgumentException("El jugador no tiene suficientes cartas para intercambiar.");
+        }
+
+        List<Carta> cartasSeleccionadas = new ArrayList<>();
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Jugador " + nombre + ", selecciona " + cantidad + " cartas para intercambiar:");
+        for (int i = 0; i < cantidad; i++) {
+            System.out.println("Mano actual: ");
+            for (int j = 0; j < mano.size(); j++) {
+                System.out.println(j + ": " + mano.get(j));
+            }
+            System.out.print("Elige el índice de la carta " + (i + 1) + ": ");
+            int indice = scanner.nextInt();
+
+            if (indice < 0 || indice >= mano.size()) {
+                System.out.println("Índice inválido, intenta de nuevo.");
+                i--; // Repetir la selección de esta carta
+            } else {
+                cartasSeleccionadas.add(mano.remove(indice));
+            }
+        }
+
+        return cartasSeleccionadas;
+
+    }
 }

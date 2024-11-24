@@ -17,14 +17,14 @@ public class Carta {
         return valor;
     }
     //Metodo que va a devolver el valor en puntos segun las reglas
-    public int obtenerValor(){
-        if (palo==Palo.CORAZONES){
-            return 1;
-        }else if (palo==Palo.PICAS && valor ==12){
-            return 13;
-        }
-        return 0; //las otras cartas no suman puntos
-    }
+    //public int obtenerValor(){
+      //  if (palo==Palo.CORAZONES){
+        //    return 1;
+        //}else if (palo==Palo.PICAS && valor ==12){
+          //  return 13;
+        //}
+        //return 0; //las otras cartas no suman puntos
+    //}
     @Override
     public String toString() {
         String nombreValor;
