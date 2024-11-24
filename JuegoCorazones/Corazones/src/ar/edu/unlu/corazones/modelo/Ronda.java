@@ -3,13 +3,25 @@ import java.util.ArrayList;
 import java.util.List;
 public class Ronda {
     private int numero; // numero de la ronda
-    private List<Carta> cartasJugadas; // cartas jugadas durante la ronda
+    private List<Carta> cartasJugadas; // cartas jugadas durante la ronda, no definido
     private boolean intercambioRealizado;
+    private Jugador jugadorInicial;
 
-    public Ronda(int numero) {
+    public Ronda(int numero,  List<Jugador> jugadores) {
         this.numero = numero;
         this.cartasJugadas = new ArrayList<>();
         this.intercambioRealizado = false;
+        this.jugadorInicial = encontrarJugadorInicial(jugadores);
+    }
+    private Jugador encontrarJugadorInicial(List<Jugador> jugadores) {
+        for (Jugador jugador : jugadores) {
+            for (Carta carta : jugador.getMano()) { // Supongo que hay un método getMano() en Jugador
+                if (carta.getPalo() == Palo.TREBOLES && carta.getValor() == Valor.DOS) {
+                    return jugador;
+                }
+            }
+        }
+        return null; // siempre tiene que haber un jugador con el 2 de trebol
     }
 
     public void iniciarIntercambio(List<Jugador> jugadores) {
@@ -38,7 +50,7 @@ public class Ronda {
         }
 
         intercambioRealizado = true;
-        System.out.println("Intercambio de tres cartas realizado para la ronda " + numero + ".");
+        System.out.println("Intercambio de tres cartas realizado para la ronda " + numero);
     }
 
     //determino el indice(jugador) a quien se le pasara las cartas
@@ -58,25 +70,34 @@ public class Ronda {
     public void registrarCarta(Carta carta) {
         cartasJugadas.add(carta);
     }
-
-
      // calculo los puntajes de los jugadores al final de la ronda.
-    public void calcularPuntajes(List<Jugador> jugadores) {
-        for (Jugador jugador : jugadores) {
-            int puntos = 0;
+     public void calcularPuntajes(List<Jugador> jugadores) {
+         for (Jugador jugador : jugadores) {
+             int puntosRonda = 0;
 
-            for (Carta carta : cartasJugadas) {
-                if (carta.getPalo() == Palo.CORAZONES) {
-                    puntos += 1; // Cada corazón vale 1 punto
-                } else if (carta.getPalo() == Palo.PICAS && carta.getValor() == 12) {
-                    puntos += 13; // La dama de picas vale 13 puntos
-                }
-            }
+             // Sumar puntos de las cartas jugadas en esta ronda
+             for (Carta carta : cartasJugadas) {
+                 if (carta.getPalo() == Palo.CORAZONES) {
+                     puntosRonda += 1; // Cada corazón vale 1 punto
+                 } else if (carta.getPalo() == Palo.PICAS && carta.getValor() == Valor.REINA) {
+                     puntosRonda += 13; // La Reina de Picas vale 13 puntos
+                 }
+             }
 
-            jugador.sumarPuntos(puntos);
-            System.out.println("Jugador " + jugador.getNombre() + " sumó " + puntos + " puntos. Total: " + jugador.getPuntaje());
-        }
-    }
+             // sumo los puntos de esta ronda al total acumulado del jugador
+             jugador.sumarPuntos(puntosRonda);
+
+             // por el momento, imprimo el puntaje por ronda
+             System.out.println("Jugador " + jugador.getNombre() + " sumó " + puntosRonda + " puntos en esta ronda. Total acumulado: " + jugador.getPuntaje());
+         }
+
+         // verifico si algún jugador ha alcanzado o superado los 100 puntos, y terminar la partida
+         for (Jugador jugador : jugadores) {
+             if (jugador.getPuntaje() >= 100) {
+                 System.out.println("Termino la terminado " + jugador.getNombre() + " ha alcanzado los 100 puntos.");
+             }
+         }
+     }
 
     public void finalizarRonda() {
         this.cartasJugadas.clear();
@@ -84,15 +105,15 @@ public class Ronda {
         System.out.println("Ronda " + numero + " finalizada.");
     }
 
-    public int getNumero() {
+    public int getNumero () {
         return numero;
     }
 
-    public boolean isIntercambioRealizado() {
+    public boolean isIntercambioRealizado () {
         return intercambioRealizado;
     }
 
-    public List<Carta> getCartasJugadas() {
+    public List<Carta> getCartasJugadas () {
         return cartasJugadas;
     }
 

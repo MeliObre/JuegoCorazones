@@ -23,9 +23,6 @@ public class Jugador {
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
         this.creado = fechaHoraActual.format(formato);
     }
-   public void tomarCarta (Carta c){
-        mano.add(c);
-   }
    public Carta jugarCarta (int i){
         if (i < 0 || i>= mano.size()){
             throw new IndexOutOfBoundsException("Indice invalido");
@@ -63,11 +60,11 @@ public class Jugador {
         return this.creado;
    }
 
-    public List<Carta> seleccionarCartasParaIntercambio(int cantidad) {
+    public List<Carta> seleccionarCartasParaIntercambio(int cantidad) { //cantidad son 3, pero lo podria pone como  final int CANTIDAD_A_SELECCIONAR = 3
         if (cantidad > mano.size()) {
             throw new IllegalArgumentException("El jugador no tiene suficientes cartas para intercambiar.");
         }
-
+        //con 4 jugadores no seria necesario verificar la cantidad de cartas, pero si habria mas jugadores si
         List<Carta> cartasSeleccionadas = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
 
@@ -90,5 +87,9 @@ public class Jugador {
 
         return cartasSeleccionadas;
 
+    }
+
+    public List<Carta> getMano() {
+        return mano;
     }
 }

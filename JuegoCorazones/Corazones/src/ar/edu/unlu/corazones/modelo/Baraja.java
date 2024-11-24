@@ -10,10 +10,10 @@ public class Baraja {
         this.crearBaraja();
     }
     //creo la baraja completa con las cartas
-    private void crearBaraja(){
-        for (Palo palo : Palo.values()){
-            for (int valor = 1; valor <=13; valor++){
-                cartas.add(new Carta(palo,valor));
+    private void crearBaraja() {
+        for (Palo palo : Palo.values()) {
+            for (Valor valor : Valor.values()) {  // Cambiar el bucle para iterar sobre los valores de Valor
+                cartas.add(new Carta(palo, valor)); // Usamos 'valor' que es de tipo Valor, no int
             }
         }
     }
@@ -40,24 +40,15 @@ public class Baraja {
 
         return manos;
     }
-    // Método para obtener el número de cartas restantes en la baraja."NO SERIA NECESARIO"
+    // metodo para obtener el número de cartas
     public int getNumeroDeCartas() {
         return cartas.size();
     }
 
-    // Método para obtener la baraja completa (útil para depuración o inspección).
+    // obtener la baraja completa (útil para depuración o inspección).
     public List<Carta> getCartas() {
         return cartas;
     }
 
-    // Representación textual de la baraja (útil para depuración).
-    @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("Baraja:\n");
-        for (Carta carta : cartas) {
-            sb.append(carta).append("\n");
-        }
-        return sb.toString();
-    }
 
 }

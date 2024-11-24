@@ -25,7 +25,7 @@ public class Partida {
         }
         // muestro ganador por ronda
         Jugador ganador = finalizarPartida();
-        System.out.println("La partida ha terminado. El ganador es: " + ganador.getNombre());
+        System.out.println("La partida termino. El ganador es: " + ganador.getNombre());
     }
 
     // reparto las cartas a los jugadores
@@ -43,7 +43,7 @@ public class Partida {
         System.out.println("Iniciando ronda " + (rondasJugadas + 1));
         // realizo el intercambio de cartas según las reglas
         // el numero de ronda afecta el intercambio
-        Ronda ronda = new Ronda(rondasJugadas + 1); // Pasamos el número de ronda a la clase Ronda
+        Ronda ronda = new Ronda(rondasJugadas + 1, jugadores); // Pasamos el número de ronda a la clase Ronda
         ronda.iniciarIntercambio(jugadores);
 
         // Aquí iría la lógica para que los jugadores jueguen sus cartas, sumen puntos, etc.
@@ -61,14 +61,14 @@ public class Partida {
     // verifico si hay un ganador
     public boolean verificarGanador() {
         for (Jugador jugador : jugadores) {
-            if (jugador.getPuntaje() >= 100) {  // Si un jugador alcanza o supera 50 puntos, se acaba el juego
+            if (jugador.getPuntaje() >= 100) {
                 return true;
             }
         }
         return false;  // Si no hay ganador aún
     }
 
-    // finalizo la partida y devolver el ganador
+    // finalizo la partida y devuelvo el ganador
     public Jugador finalizarPartida() {
         Jugador ganador = Collections.min(jugadores, Comparator.comparingInt(Jugador::getPuntaje));
         return ganador;  // retorno el jugador con menos puntos (o el que cumpla alguna otra condición de victoria)

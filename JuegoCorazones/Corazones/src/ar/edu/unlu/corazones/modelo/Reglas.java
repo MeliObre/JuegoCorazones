@@ -15,7 +15,7 @@ public class Reglas {
                 }
 
                 // Si la carta es la dama de picas, sumar 13 puntos
-                if (carta.getPalo() == Palo.PICAS && carta.getValor() == 12) {
+                if (carta.getPalo() == Palo.PICAS && carta.getValor() == Valor.REINA) {
                     jugador.sumarPuntos(13);
                 }
             }
