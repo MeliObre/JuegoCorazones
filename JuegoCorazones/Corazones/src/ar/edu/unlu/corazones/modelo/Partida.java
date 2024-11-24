@@ -1,8 +1,5 @@
 package ar.edu.unlu.corazones.modelo;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 
 public class Partida {
     private List<Jugador> jugadores;
@@ -37,26 +34,46 @@ public class Partida {
             jugadores.get(i).recibirCartas(cartasRepartidas);
         }
     }
-
     public void jugarRonda() {
-
         System.out.println("Iniciando ronda " + (rondasJugadas + 1));
-        // realizo el intercambio de cartas según las reglas
-        // el numero de ronda afecta el intercambio
-        Ronda ronda = new Ronda(rondasJugadas + 1, jugadores); // Pasamos el número de ronda a la clase Ronda
+
+        Ronda ronda = new Ronda(rondasJugadas + 1, jugadores);
+
+        // realizo el intercambio de cartas segun las reglas en la clase regla
         ronda.iniciarIntercambio(jugadores);
 
-        // Aquí iría la lógica para que los jugadores jueguen sus cartas, sumen puntos, etc.
-        // Dependiendo de la dinámica del juego, puedes agregar un ciclo para que los jugadores jueguen
-        // sus cartas y luego la función de cálculo de puntos.
-        List<Carta> cartasJugadas = new ArrayList<>();  // Lista de cartas jugadas en esta ronda (debería llenarse con las cartas reales jugadas)
-        Reglas.calcularPuntos(jugadores, cartasJugadas);  // Calcula los puntos sumados en esta ronda
+        List<Carta> cartasJugadas = new ArrayList<>();
+        for (Jugador jugador : jugadores) {
+            // muestro las cartas disponibles para que el jugador elija
+            System.out.println(jugador.getNombre() + " elige una carta:");
+            for (int j = 0; j < jugador.getMano().size(); j++) {
+                System.out.println(j + ": " + jugador.getMano().get(j));
+            }
+            //pido que elija una carta
+            Scanner scanner = new Scanner(System.in);
+            int indiceElegido = scanner.nextInt();
 
-        // El puntaje de cada jugador se actualiza a medida que se suman los puntos
+            // indice valido
+            if (indiceElegido >= 0 && indiceElegido < jugador.getMano().size()) {
+                Carta carta = jugador.jugarCarta(indiceElegido); // el jugador juega la carta seleccionada
+                cartasJugadas.add(carta);
+                System.out.println(jugador.getNombre() + " juega: " + carta);
+            } else {
+                System.out.println("Indice invalido");
+            }
+        }
+
+        // Calcular los puntos sumados en esta ronda
+        Reglas.calcularPuntos(jugadores, cartasJugadas);
+
+        // Mostrar puntajes actualizados de los jugadores
         for (Jugador jugador : jugadores) {
             System.out.println(jugador.getNombre() + " tiene " + jugador.getPuntaje() + " puntos.");
         }
+
+        rondasJugadas++;
     }
+
 
     // verifico si hay un ganador
     public boolean verificarGanador() {

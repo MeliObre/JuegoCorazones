@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-11-24T21:18:27.912Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.3 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="QFXWk3ycOQRgYsKKU6HB" version="22.0.3" type="device">
+<mxfile host="Electron" modified="2024-11-24T22:35:21.931Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/22.0.3 Chrome/114.0.5735.289 Electron/25.8.4 Safari/537.36" etag="LvHcYuRY9UzEhFMB1GNT" version="22.0.3" type="device">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="1034" dy="1688" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -126,16 +126,16 @@
           <mxGeometry y="236" width="170" height="26" as="geometry" />
         </mxCell>
         <mxCell id="1rjTtEy0xH4NKV1ADeRm-37" value="Reglas" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="WIyWlLk6GJQsqaUBKTNV-1" vertex="1">
-          <mxGeometry x="40" y="-40" width="210" height="126" as="geometry" />
+          <mxGeometry x="40" y="-40" width="210" height="130" as="geometry" />
         </mxCell>
         <mxCell id="1rjTtEy0xH4NKV1ADeRm-38" value="+ realizarIntercambio(int, List&amp;lt;Jugador&amp;gt;): void&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1rjTtEy0xH4NKV1ADeRm-37" vertex="1">
           <mxGeometry y="26" width="210" height="34" as="geometry" />
         </mxCell>
         <mxCell id="1rjTtEy0xH4NKV1ADeRm-41" value="+ calcularPuntos(List&amp;lt;Jugador&amp;gt;): void&amp;nbsp;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1rjTtEy0xH4NKV1ADeRm-37" vertex="1">
-          <mxGeometry y="60" width="210" height="26" as="geometry" />
+          <mxGeometry y="60" width="210" height="40" as="geometry" />
         </mxCell>
         <mxCell id="1rjTtEy0xH4NKV1ADeRm-42" value="&amp;nbsp;+ actualizarPuntajes(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" parent="1rjTtEy0xH4NKV1ADeRm-37" vertex="1">
-          <mxGeometry y="86" width="210" height="40" as="geometry" />
+          <mxGeometry y="100" width="210" height="30" as="geometry" />
         </mxCell>
         <mxCell id="1rjTtEy0xH4NKV1ADeRm-43" value="1" style="endArrow=open;html=1;endSize=12;startArrow=diamondThin;startSize=14;startFill=1;edgeStyle=orthogonalEdgeStyle;align=left;verticalAlign=bottom;rounded=0;exitX=1;exitY=-0.167;exitDx=0;exitDy=0;exitPerimeter=0;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="1rjTtEy0xH4NKV1ADeRm-23" target="1rjTtEy0xH4NKV1ADeRm-28" edge="1">
           <mxGeometry x="-1" y="3" relative="1" as="geometry">

@@ -2,8 +2,7 @@ package ar.edu.unlu.corazones.modelo;
 
 import java.util.List;
 
-// centralizo la lógica que define cómo deben jugarse las rondas y cómo se calculan los puntos,
-// intercambios y ganadores, separando esta lógica del resto del juego.
+// centralizo la logica del juego
 public class Reglas {
     // calcula los puntos de los jugadores al final de una ronda.
     public static void calcularPuntos(List<Jugador> jugadores, List<Carta> cartasJugadas) {
