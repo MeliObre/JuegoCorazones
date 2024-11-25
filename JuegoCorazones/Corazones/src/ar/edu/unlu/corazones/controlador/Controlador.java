@@ -1,32 +1,34 @@
 package ar.edu.unlu.corazones.controlador;
+import ar.edu.unlu.corazones.vista.VistaGrafica;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import ar.edu.unlu.corazones.modelo.Partida;
-import ar.edu.unlu.corazones.vista.Vista;
-
+import javax.swing.JOptionPane;
 public class Controlador {
-    private Vista vista;
-    private Partida partida;
+    private VistaGrafica vista;
 
-    public Controlador(Vista vista, Partida partida) {
+    public Controlador(VistaGrafica vista) {
         this.vista = vista;
-        this.partida = partida;
-
-        vista.agregarListener(new ActionListener() {
+        this.vista.agregarListenerReglas(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                jugarCarta();
+                mostrarReglas();
+            }
+        });
+
+        this.vista.agregarListenerComenzarJuego(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                iniciarJuego();
             }
         });
     }
 
-    public void jugarCarta() {
-        // Supongamos que jugamos la carta en la ronda
-        // Deberías obtener el jugador actual y la carta que juega
-        // y luego actualizar el modelo
-        partida.jugarRonda();
+    private void mostrarReglas() {
+        JOptionPane.showMessageDialog(vista, "Reglas del juego Corazones:\n\n1. Las reglas básicas...\n2. El objetivo es...");
+    }
 
-        // Luego, actualizar la vista
-        vista.actualizarInformacion("¡Ronda jugada!");
+    private void iniciarJuego() {
+        JOptionPane.showMessageDialog(vista, "¡El juego ha comenzado!");
     }
 }
+
