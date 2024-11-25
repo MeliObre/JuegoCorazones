@@ -4,9 +4,6 @@ public class Carta {
     private Palo palo;
     private Valor valor;
     public Carta (Palo palo,Valor valor){
-        //if (valor < 1 || valor >13){
-          //  throw new IndexOutOfBoundsException("El valor de la carta debe ser entre 1 y 13");
-        //}
         this.palo=palo;
         this.valor=valor;
     }

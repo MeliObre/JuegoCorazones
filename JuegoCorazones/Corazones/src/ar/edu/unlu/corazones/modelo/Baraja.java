@@ -12,40 +12,40 @@ public class Baraja {
     //creo la baraja completa con las cartas
     private void crearBaraja() {
         for (Palo palo : Palo.values()) {
-            for (Valor valor : Valor.values()) {  // Cambiar el bucle para iterar sobre los valores de Valor
-                cartas.add(new Carta(palo, valor)); // Usamos 'valor' que es de tipo Valor, no int
+            for (Valor valor : Valor.values()) {
+                cartas.add(new Carta(palo, valor));
             }
         }
     }
     public void barajar(){
-        Collections.shuffle(cartas);//mezclo las cartas
+        Collections.shuffle(cartas);
     }
     public List<List<Carta>> repartir (int cantidadJugadores){
         if (cantidadJugadores<= 0 || cantidadJugadores>cartas.size()){
-            throw new IllegalArgumentException("Número de jugadores inválido.");
+            throw new IllegalArgumentException("Numero de jugadores invalido.");
         }
         List<List<Carta>> manos = new ArrayList<>();
         for (int i = 0; i < cantidadJugadores; i++) {
             manos.add(new ArrayList<>());
         }
-        //reparto las cartas equivalentemente
+        //reparto
         int jugadorActual = 0;
         for (Carta carta : cartas) {
             manos.get(jugadorActual).add(carta);
             jugadorActual = (jugadorActual + 1) % cantidadJugadores;
         }
 
-        // Vaciar la baraja después de repartir
+        // Vaciar la baraja
         cartas.clear();
 
         return manos;
     }
-    // metodo para obtener el número de cartas
+
     public int getNumeroDeCartas() {
         return cartas.size();
     }
 
-    // obtener la baraja completa (útil para depuración o inspección).
+
     public List<Carta> getCartas() {
         return cartas;
     }

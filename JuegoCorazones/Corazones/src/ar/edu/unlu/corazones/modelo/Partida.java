@@ -16,21 +16,21 @@ public class Partida {
         repartirCartas();
         rondasJugadas = 0;
 
-        while (!verificarGanador()) {  // mientras no hay un ganador
-            jugarRonda();  // juega una ronda
-            rondasJugadas++;  // aumento el número de rondas jugadas
+        while (!verificarGanador()) {
+            jugarRonda();
+            rondasJugadas++;
         }
         // muestro ganador por ronda
         Jugador ganador = finalizarPartida();
         System.out.println("La partida termino. El ganador es: " + ganador.getNombre());
     }
 
-    // reparto las cartas a los jugadores
+
     private void repartirCartas() {
         baraja.barajar();
         List<List<Carta>> manos = baraja.repartir(4);
         for (int i = 0; i < jugadores.size(); i++) {
-            List<Carta> cartasRepartidas = manos.get(i);  // Obtener las cartas del jugador
+            List<Carta> cartasRepartidas = manos.get(i);
             jugadores.get(i).recibirCartas(cartasRepartidas);
         }
     }
@@ -49,11 +49,11 @@ public class Partida {
             for (int j = 0; j < jugador.getMano().size(); j++) {
                 System.out.println(j + ": " + jugador.getMano().get(j));
             }
-            //pido que elija una carta
+
             Scanner scanner = new Scanner(System.in);
             int indiceElegido = scanner.nextInt();
 
-            // indice valido
+
             if (indiceElegido >= 0 && indiceElegido < jugador.getMano().size()) {
                 Carta carta = jugador.jugarCarta(indiceElegido); // el jugador juega la carta seleccionada
                 cartasJugadas.add(carta);
@@ -66,7 +66,7 @@ public class Partida {
         // Calcular los puntos sumados en esta ronda
         Reglas.calcularPuntos(jugadores, cartasJugadas);
 
-        // Mostrar puntajes actualizados de los jugadores
+
         for (Jugador jugador : jugadores) {
             System.out.println(jugador.getNombre() + " tiene " + jugador.getPuntaje() + " puntos.");
         }
@@ -75,19 +75,19 @@ public class Partida {
     }
 
 
-    // verifico si hay un ganador
+
     public boolean verificarGanador() {
         for (Jugador jugador : jugadores) {
             if (jugador.getPuntaje() >= 100) {
                 return true;
             }
         }
-        return false;  // Si no hay ganador aún
+        return false;
     }
 
     // finalizo la partida y devuelvo el ganador
     public Jugador finalizarPartida() {
         Jugador ganador = Collections.min(jugadores, Comparator.comparingInt(Jugador::getPuntaje));
-        return ganador;  // retorno el jugador con menos puntos (o el que cumpla alguna otra condición de victoria)
+        return ganador;
     }
 }

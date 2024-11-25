@@ -79,7 +79,7 @@ public class Jugador {
 
             if (indice < 0 || indice >= mano.size()) {
                 System.out.println("Índice inválido, intenta de nuevo.");
-                i--; // Repetir la selección de esta carta
+                i--;
             } else {
                 cartasSeleccionadas.add(mano.remove(indice));
             }

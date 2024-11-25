@@ -15,7 +15,7 @@ public class Ronda {
     }
     private Jugador encontrarJugadorInicial(List<Jugador> jugadores) {
         for (Jugador jugador : jugadores) {
-            for (Carta carta : jugador.getMano()) { // Supongo que hay un método getMano() en Jugador
+            for (Carta carta : jugador.getMano()) {
                 if (carta.getPalo() == Palo.TREBOLES && carta.getValor() == Valor.DOS) {
                     return jugador;
                 }
@@ -30,10 +30,10 @@ public class Ronda {
             return;
         }
 
-        // creo una lista para almacenar las cartas que se intercambiarán
+
         List<List<Carta>> cartasIntercambiadas = new ArrayList<>();
         for (Jugador jugador : jugadores) {
-            cartasIntercambiadas.add(new ArrayList<>()); // Lista vacía para cada jugador
+            cartasIntercambiadas.add(new ArrayList<>());
         }
 
         // cada jugador selecciona tres cartas para intercambiar
@@ -53,7 +53,7 @@ public class Ronda {
         System.out.println("Intercambio de tres cartas realizado para la ronda " + numero);
     }
 
-    //determino el indice(jugador) a quien se le pasara las cartas
+
     private int determinarDestino(int indiceActual, int totalJugadores) {
         switch (numero) {
             case 1: // Jugador de la izquierda
