@@ -1,5 +1,7 @@
 package ar.edu.unlu.corazones.controlador;
 import ar.edu.unlu.corazones.vista.VistaGrafica;
+import ar.edu.unlu.corazones.vista.VistaReglas;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -8,27 +10,14 @@ public class Controlador {
 
     public Controlador(VistaGrafica vista) {
         this.vista = vista;
-        this.vista.agregarListenerReglas(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                mostrarReglas();
-            }
-        });
 
-        this.vista.agregarListenerComenzarJuego(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                iniciarJuego();
-            }
-        });
+        // uso listerns para interacciones simples
+        this.vista.agregarListenerReglas(e -> mostrarReglas());
     }
 
-    private void mostrarReglas() {
-        JOptionPane.showMessageDialog(vista, "Reglas del juego Corazones:\n\n1. Las reglas básicas...\n2. El objetivo es...");
-    }
-
-    private void iniciarJuego() {
-        JOptionPane.showMessageDialog(vista, "¡El juego ha comenzado!");
+    private void mostrarReglas() { //muesto las reglas
+        VistaReglas vistaReglas = new VistaReglas();
+        vistaReglas.setVisible(true);
     }
 }
 

@@ -4,52 +4,41 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 public class VistaGrafica extends JFrame{
-    private JButton btnReglas;
-    private JButton btnComenzarJuego;
+    private JButton botonReglas;
+    private JButton botonIniciar;
+
     public VistaGrafica() {
-        setTitle("Juego de Cartas Corazones");
-        setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLocationRelativeTo(null);
+        // Configuración básica
+        this.setTitle("Juego de Cartas - Corazones");
+        this.setSize(600, 400);
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setLocationRelativeTo(null);
 
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        // Crear componentes
+        JLabel titulo = new JLabel("¡Bienvenidos al Juego de Cartas Corazones!", SwingConstants.CENTER);
+        titulo.setFont(new Font("Arial", Font.BOLD, 20));
 
+        botonReglas = new JButton("Ver Reglas");
+        botonIniciar = new JButton("Comenzar Juego");
 
-        JLabel titulo = new JLabel("Bienvenidos al Juego de Cartas Corazones", JLabel.CENTER);
-        titulo.setFont(new Font("Arial", Font.BOLD, 16));
-        titulo.setAlignmentX(Component.CENTER_ALIGNMENT);
+        // Panel de botones
+        JPanel panelBotones = new JPanel();
+        panelBotones.add(botonReglas);
+        panelBotones.add(botonIniciar);
 
-        btnReglas = new JButton("Ver Reglas");
-        btnReglas.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        btnComenzarJuego = new JButton("Comenzar Juego");
-        btnComenzarJuego.setAlignmentX(Component.CENTER_ALIGNMENT);
-
-        panel.add(titulo);
-        panel.add(Box.createVerticalStrut(20));
-        panel.add(btnReglas);
-        panel.add(Box.createVerticalStrut(10));
-        panel.add(btnComenzarJuego);
-
-        add(panel);
-
-        setVisible(true);
-    }
-    public JButton getBtnReglas() {
-        return btnReglas;
+        // Agregar componentes al marco
+        this.setLayout(new BorderLayout());
+        this.add(titulo, BorderLayout.CENTER);
+        this.add(panelBotones, BorderLayout.SOUTH);
     }
 
-    public JButton getBtnComenzarJuego() {
-        return btnComenzarJuego;
-    }
-
+    // Método para agregar el listener al botón de "Ver Reglas"
     public void agregarListenerReglas(ActionListener listener) {
-        btnReglas.addActionListener(listener);
+        botonReglas.addActionListener(listener);
     }
-
+    // Método para agregar el listener al botón de "Comenzar Juego" (opcional)
     public void agregarListenerComenzarJuego(ActionListener listener) {
-        btnComenzarJuego.addActionListener(listener);
+        botonIniciar.addActionListener(listener);
     }
 
 }
