@@ -18,7 +18,7 @@ public class Carta {
             return true; // las cartas de corazones siempre valen 1 punto
         }
         if (palo == Palo.PICAS && valor == Valor.REINA) {
-            return true; //la carta "Q de picas" (dama de picas) suma 13 puntos
+            return true; //la carta reina de picas suma 13 puntos
         }
         return false;
     }

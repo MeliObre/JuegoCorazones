@@ -2,7 +2,7 @@ package ar.edu.unlu.corazones.modelo;
 import java.util.ArrayList;
 import java.util.List;
 public class Ronda {
-    private int numero; // numero de la ronda
+    private int numero;
     private List<Carta> cartasJugadas; // cartas jugadas durante la ronda, no definido
     private boolean intercambioRealizado;
     private Jugador jugadorInicial;

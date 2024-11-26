@@ -74,11 +74,11 @@ public class Jugador {
             for (int j = 0; j < mano.size(); j++) {
                 System.out.println(j + ": " + mano.get(j));
             }
-            System.out.print("Elige el índice de la carta " + (i + 1) + ": ");
+            System.out.print("Elige el indice de la carta " + (i + 1) + ": ");
             int indice = scanner.nextInt();
 
             if (indice < 0 || indice >= mano.size()) {
-                System.out.println("Índice inválido, intenta de nuevo.");
+                System.out.println("Indice invalido, intenta de nuevo.");
                 i--;
             } else {
                 cartasSeleccionadas.add(mano.remove(indice));
