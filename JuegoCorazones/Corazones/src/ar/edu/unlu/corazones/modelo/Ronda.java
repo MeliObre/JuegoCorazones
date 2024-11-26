@@ -21,7 +21,7 @@ public class Ronda {
                 }
             }
         }
-        return null; // siempre tiene que haber un jugador con el 2 de trebol
+        return null;
     }
 
     public void iniciarIntercambio(List<Jugador> jugadores) {
@@ -29,7 +29,6 @@ public class Ronda {
             System.out.println("El intercambio no se realiza en esta ronda.");
             return;
         }
-
 
         List<List<Carta>> cartasIntercambiadas = new ArrayList<>();
         for (Jugador jugador : jugadores) {
