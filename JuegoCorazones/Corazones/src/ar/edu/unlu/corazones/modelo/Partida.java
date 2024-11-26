@@ -74,8 +74,6 @@ public class Partida {
         rondasJugadas++;
     }
 
-
-
     public boolean verificarGanador() {
         for (Jugador jugador : jugadores) {
             if (jugador.getPuntaje() >= 100) {

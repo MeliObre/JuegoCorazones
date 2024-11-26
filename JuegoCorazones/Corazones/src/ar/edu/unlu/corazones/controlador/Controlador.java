@@ -15,7 +15,7 @@ public class Controlador {
         this.vista.agregarListenerReglas(e -> mostrarReglas());
     }
 
-    private void mostrarReglas() { //muesto las reglas
+    private void mostrarReglas() {
         VistaReglas vistaReglas = new VistaReglas();
         vistaReglas.setVisible(true);
     }

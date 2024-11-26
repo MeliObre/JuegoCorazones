@@ -25,7 +25,7 @@ public class Ronda {
     }
 
     public void iniciarIntercambio(List<Jugador> jugadores) {
-        if (intercambioRealizado || numero == 4) { // Ronda 4 no requiere intercambio
+        if (intercambioRealizado || numero == 4) { // la roonda 4 no requiere intercambio
             System.out.println("El intercambio no se realiza en esta ronda.");
             return;
         }
